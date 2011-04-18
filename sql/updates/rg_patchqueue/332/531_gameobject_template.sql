@@ -1,0 +1,1 @@
+update gameobject_template set data2=604800,data11=0 where entry in(193426,181366);

@@ -1,0 +1,1 @@
+UPDATE `gossip_menu_option` SET `box_text` = 'Seid Ihr sicher, dass Ihr eine zweite Talentspezifizierung erwerben möchtet?' WHERE `gossip_menu_option`.`menu_id` =0 AND `gossip_menu_option`.`id` =16 AND `gossip_menu_option`.`box_money`=10000000;

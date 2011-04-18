@@ -1,0 +1,1 @@
+UPDATE `quest_template` SET `ReqCreatureOrGOId1`=29124, `ReqSpellCast1`=54191 WHERE `entry`=12805;

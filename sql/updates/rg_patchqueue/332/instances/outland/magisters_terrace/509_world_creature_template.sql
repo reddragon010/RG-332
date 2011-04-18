@@ -1,0 +1,2 @@
+update creature_template set mechanic_immune_mask=612379483 where entry in (24696,25547,24698,25551,24762,25567,24684,25565,24683,25568,24687,25570,24777,25571,24686,25572,24689,25575,24690,25576,24688,25577);
+update access_requirement set heroic_level_min=70 where id=4887;

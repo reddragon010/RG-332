@@ -1,0 +1,7 @@
+-- 0000900: NORDEND - Besorgt den Schlüssel
+DELETE FROM `creature` WHERE `id`=29915;
+INSERT INTO `creature` Values (2600045, 29915, 571, 1, 1, 26637, 0, 8423.35, 3052.23, 588.14, 1.53, 300, 0, 0, 12600, 0, 0, 0);
+
+-- Hall of Lightning
+UPDATE `creature` SET `id`=2600004 WHERE `guid` IN (126845,126837,126837,126842);
+UPDATE `creature` SET `id`=2600005 WHERE `guid` IN (126848,126851,126861,126853,126857,126859);

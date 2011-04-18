@@ -1,0 +1,1 @@
+update quest_template set QuestFlags=128,ReqCreatureOrGOId1=0,ReqCreatureOrGOCount1=0 where entry=12801;

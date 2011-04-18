@@ -1,0 +1,1 @@
+UPDATE `creature` SET `spawntimesecs`=160 WHERE `id`=31099

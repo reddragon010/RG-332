@@ -1,0 +1,1 @@
+UPDATE `quest_template` SET `SrcItemId`=42441, `SrcItemCount`=1, `ReqSourceId1`=42441, `ReqSourceCount2`=1, `ReqCreatureOrGOId1`=30209, `ReqCreatureOrGOId2`=30211, `ReqCreatureOrGOId3`=30212, `ReqCreatureOrGOCount1`=1, `ReqCreatureOrGOCount2`=1, `ReqCreatureOrGOCount3`=1, `ReqSpellCast1`=56275, `ReqSpellCast2`=56275, `ReqSpellCast3`=56275 WHERE `entry`=12988;

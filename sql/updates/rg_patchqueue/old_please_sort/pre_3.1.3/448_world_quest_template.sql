@@ -1,0 +1,1 @@
+UPDATE `quest_template` SET `specialflags`=0, `ReqSpellCast1`=49097 WHERE `entry`=12327;
