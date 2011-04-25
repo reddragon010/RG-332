@@ -1185,6 +1185,9 @@ void Spell::DoAllEffectOnTarget(TargetInfo *target)
                (m_spellInfo->DmgClass == SPELL_DAMAGE_CLASS_MELEE || m_spellInfo->DmgClass == SPELL_DAMAGE_CLASS_RANGED))
                 caster->ToPlayer()->CastItemCombatSpell(unitTarget, m_attackType, procVictim, procEx);
         }
+        /* process anticheat check */
+        if (caster->GetTypeId() == TYPEID_PLAYER)
+            ((Player*)caster)->GetAntiCheat()->DoAntiCheatCheck(CHECK_DAMAGE_SPELL, m_spellInfo->Id, 0, damageInfo.damage);
 
         caster->DealSpellDamage(&damageInfo, true);
 

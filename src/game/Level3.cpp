@@ -941,6 +941,16 @@ bool ChatHandler::HandleReloadTrinityStringCommand(const char*)
     return true;
 }
 
+bool ChatHandler::HandleReloadAntiCheatCommand(const char* /*args*/)
+{
+
+    sLog.outString( "Re-Loading anticheat config table...");
+    objmgr.LoadAntiCheatConfig();
+    SendGlobalGMSysMessage("Anticheat config reloaded.");
+
+    return true;
+ }
+
 bool ChatHandler::HandleReloadNpcGossipCommand(const char*)
 {
     sLog.outString("Re-Loading `npc_gossip` Table!");

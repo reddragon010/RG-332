@@ -589,6 +589,7 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
     // if attacker is a player and spell is not empty/fail
     if (GetTypeId() == TYPEID_PLAYER && spellProto)
     {
+
         // on divine storm dealed damage - heal
         if (spellProto->SpellFamilyName == SPELLFAMILY_PALADIN && spellProto->SpellFamilyFlags[1] & 0x20000)
         {
@@ -699,7 +700,7 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
     if (GetTypeId() == TYPEID_PLAYER && this != pVictim)
     {
         Player *killer = this->ToPlayer();
-
+        killer->GetAntiCheat()->DoAntiCheatCheck(CHECK_DAMAGE, 0, 0, damage);
         // in bg, count dmg if victim is also a player
         if (pVictim->GetTypeId() == TYPEID_PLAYER)
         {
@@ -2480,7 +2481,7 @@ uint32 Unit::CalculateDamage(WeaponAttackType attType, bool normalized, bool add
 
 float Unit::CalculateLevelPenalty(SpellEntry const* spellProto) const
 {
-    if (spellProto->spellLevel <= 0 || spellProto->spellLevel >= spellProto->maxLevel) //this is necessary because 
+    if (spellProto->spellLevel <= 0 || spellProto->spellLevel >= spellProto->maxLevel) //this is necessary because
         return 1.0f; 	//some effects have only level 1
 
     float LvlPenalty = 0.0f;
@@ -2655,7 +2656,7 @@ SpellMissInfo Unit::MeleeSpellHitResult(Unit *pVictim, SpellEntry const *spell)
     tmp += resist_chance;
     if (roll < tmp)
         return SPELL_MISS_RESIST;
-        
+
     bool canDodge = true;
     bool canParry = true;
     bool canBlock = spell->AttributesEx3 & SPELL_ATTR_EX3_BLOCKABLE_SPELL;
@@ -2823,7 +2824,7 @@ SpellMissInfo Unit::MagicSpellHitResult(Unit *pVictim, SpellEntry const *spell)
     // Chance resist mechanic (select max value from every mechanic spell effect)
     int32 resist_chance = pVictim->GetMechanicResistChance(spell) * 100;
     tmp += resist_chance;
-      
+
     // Roll chance
     if (rand < tmp)
         return SPELL_MISS_RESIST;
@@ -4008,7 +4009,7 @@ void Unit::RemoveAurasDueToSpellByDispel(uint32 spellId, uint64 casterGUID, Unit
                 RemoveAuraFromStack(iter, AURA_REMOVE_BY_ENEMY_SPELL);
 
             // Unstable Affliction (crash if before removeaura?)
-            if (aura->GetSpellProto()->SpellFamilyName == SPELLFAMILY_WARLOCK && 
+            if (aura->GetSpellProto()->SpellFamilyName == SPELLFAMILY_WARLOCK &&
                 aura->GetSpellProto()->SpellFamilyFlags[0] == 0 &&
                 aura->GetSpellProto()->SpellFamilyFlags[1] == 0x0100 &&
                 aura->GetSpellProto()->SpellFamilyFlags[2] == 0 ) //it's better to check all the flags parts and not only [1]
@@ -5252,7 +5253,7 @@ bool Unit::HandleDummyAuraProc(Unit *pVictim, uint32 damage, AuraEffect* trigger
                 {
                     triggered_spell_id = 63321;
                     break;
-                }                
+                }
                 // Bloodworms Health Leech
                 case 50453:
                 {
@@ -7148,7 +7149,7 @@ bool Unit::HandleDummyAuraProc(Unit *pVictim, uint32 damage, AuraEffect* trigger
                         sLog.outError("Unit::HandleDummyAuraProc: non handled spell id: %u (LO)", procSpell->Id);
                         return false;
                 }
-                
+
                 // Chain Lightning
                 if (procSpell->SpellFamilyFlags[0] & 0x2)
                 {
@@ -7617,7 +7618,7 @@ bool Unit::HandleAuraProc(Unit *pVictim, uint32 damage, Aura * triggeredByAura, 
                         int32 bp0 = (damage/12) * dummySpell->CalculateSimpleValue(2)/100;
                         CastCustomSpell(pVictim, 66922, &bp0, NULL, NULL, true);
                         return true;
-                    }   
+                    }
                 }
                 // but should not proc on non-critical Holy Shocks
                 else if ((procSpell->SpellFamilyFlags[0] & 0x200000 || procSpell->SpellFamilyFlags[1] & 0x10000) && !(procEx & PROC_EX_CRITICAL_HIT))
@@ -9905,7 +9906,7 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
                             break;
                         }
                 }
-        break;        
+        break;
         case SPELLFAMILY_PRIEST:
             if (spellProto->SpellFamilyFlags[0] & 0x800000)
             {

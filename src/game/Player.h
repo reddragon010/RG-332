@@ -39,9 +39,10 @@
 #include "ReputationMgr.h"
 #include "BattleGround.h"
 #include "DBCEnums.h"
-
+#include "AntiCheat.h"
 #include<string>
 #include<vector>
+#include "AntiCheat.h"
 
 struct Mail;
 class Channel;
@@ -985,6 +986,9 @@ class Player : public Unit, public GridObject<Player>
         explicit Player (WorldSession *session);
         ~Player ();
 
+        /* ANTICHEAT ENGINE */
+        AntiCheat* m_anticheat;
+        AntiCheat* GetAntiCheat() { return m_anticheat; }
         void CleanupsBeforeDelete(bool finalCleanup = true);
 
         static UpdateMask updateVisualBits;

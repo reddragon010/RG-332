@@ -304,6 +304,8 @@ void WorldSession::HandleCastSpellOpcode(WorldPacket& recvPacket)
     }
 
     sLog.outDebug("WORLD: got cast spell packet, spellId - %u, cast_count: %u, unk_flags %u, data length = %i", spellId, cast_count, unk_flags, (uint32)recvPacket.size());
+    if (!GetPlayer()->GetAntiCheat()->DoAntiCheatCheck(CHECK_SPELL, spellId, CMSG_CAST_SPELL))
+        return;
 
     SpellEntry const *spellInfo = sSpellStore.LookupEntry(spellId);
 

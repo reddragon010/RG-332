@@ -301,6 +301,8 @@ void WorldSession::HandleMovementOpcodes(WorldPacket & recv_data)
         // if we boarded a transport, add us to it
         if (plMover && !plMover->GetTransport())
         {
+            /* process anticheat check */
+ 	        GetPlayer()->GetAntiCheat()->DoAntiCheatCheck(CHECK_TRANSPORT,movementInfo);
             // elevators also cause the client to send MOVEMENTFLAG_ONTRANSPORT - just unmount if the guid can be found in the transport list
             for (MapManager::TransportSet::const_iterator iter = MapManager::Instance().m_Transports.begin(); iter != MapManager::Instance().m_Transports.end(); ++iter)
             {
@@ -335,6 +337,9 @@ void WorldSession::HandleMovementOpcodes(WorldPacket & recv_data)
     // fall damage generation (ignore in flight case that can be triggered also at lags in moment teleportation to another map).
     if (opcode == MSG_MOVE_FALL_LAND && plMover && !plMover->isInFlight())
         plMover->HandleFall(movementInfo);
+
+    /* process anticheat check */
+    GetPlayer()->GetAntiCheat()->DoAntiCheatCheck(CHECK_MOVEMENT,movementInfo, opcode);
 
     if (plMover && ((movementInfo.flags & MOVEMENTFLAG_SWIMMING) != 0) != plMover->IsInWater())
     {

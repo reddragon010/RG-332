@@ -318,7 +318,7 @@ bool ChatHandler::HandleGMTicketListCommand(const char* args)
         ss << PGetParseString(LANG_COMMAND_TICKETLISTNAME_VIP, (*itr)->name.c_str());
 	 else
 	    ss << PGetParseString(LANG_COMMAND_TICKETLISTNAME, (*itr)->name.c_str());
- 
+
         ss << PGetParseString(LANG_COMMAND_TICKETLISTAGECREATE, (secsToTimeString(time(NULL) - (*itr)->createtime, true, false)).c_str());
         ss << PGetParseString(LANG_COMMAND_TICKETLISTAGE, (secsToTimeString(time(NULL) - (*itr)->timestamp, true, false)).c_str());
         if (objmgr.GetPlayerNameByGUID((*itr)->assignedToGM, gmname))
@@ -670,6 +670,7 @@ bool ChatHandler::HandleGMTicketReloadCommand(const char*)
     objmgr.LoadGMTickets();
     return true;
 }
+
 
 //Enable\Dissable Invisible mode
 bool ChatHandler::HandleGMVisibleCommand(const char* args)

@@ -1085,14 +1085,23 @@ void WorldSession::HandleMoveTimeSkippedOpcode(WorldPacket & recv_data)
 {
     /*  WorldSession::Update(getMSTime());*/
     DEBUG_LOG("WORLD: Time Lag/Synchronization Resent/Update");
-
+    uint32 time_skipped;
     uint64 guid;
+
     if (!recv_data.readPackGUID(guid))
     {
         recv_data.rpos(recv_data.wpos());
         return;
     }
     recv_data.read_skip<uint32>();
+    recv_data >> time_skipped;
+    DEBUG_LOG("WORLD: Time Lag/Synchronization Resent/Update, data = %d", time_skipped);
+
+
+
+    if (GetPlayer()->GetGUID() == guid)
+        GetPlayer()->GetAntiCheat()->SetTimeSkipped(time_skipped);
+
     /*
         uint64 guid;
         uint32 time_skipped;

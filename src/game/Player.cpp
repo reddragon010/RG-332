@@ -501,6 +501,7 @@ Player::Player (WorldSession *session): Unit(), m_achievementMgr(this), m_reputa
         m_powerFraction[i] = 0;
 
     m_globalCooldowns.clear();
+    m_anticheat = new AntiCheat(this);
 }
 
 Player::~Player ()
@@ -540,7 +541,7 @@ Player::~Player ()
 
     delete m_declinedname;
     delete m_runes;
-
+    delete m_anticheat;
     sWorld.DecreasePlayerCount();
 }
 
@@ -17690,6 +17691,7 @@ void Player::_SaveInventory()
 				// ...but do not save position in invntory
 				continue;
 			}
+            GetAntiCheat()->DoAntiCheatCheck(CHECK_ITEM_UPDATE,item,test);
 		}
 
         switch(item->GetState())

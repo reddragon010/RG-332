@@ -613,6 +613,10 @@ void World::LoadConfigSettings(bool reload)
     m_configs[CONFIG_GRID_UNLOAD] = sConfig.GetBoolDefault("GridUnload", true);
     m_configs[CONFIG_INTERVAL_SAVE] = sConfig.GetIntDefault("PlayerSaveInterval", 15 * MINUTE * IN_MILISECONDS);
     m_configs[CONFIG_INTERVAL_DISCONNECT_TOLERANCE] = sConfig.GetIntDefault("DisconnectToleranceInterval", 0);
+    // AntiCheat-Config
+    m_configs[CONFIG_BOOL_ANTICHEAT_ENABLE] = sConfig.GetBoolDefault("Anticheat.Enable", false);
+    m_configs[CONFIG_UINT32_ANTICHEAT_ACTION_DELAY] = sConfig.GetIntDefault("Anticheat.DelayAfterAction", 30);
+    m_configs[CONFIG_UINT32_ANTICHEAT_GMLEVEL] = sConfig.GetIntDefault("Anticheat.GmLevel", 0);
 
     m_configs[CONFIG_INTERVAL_GRIDCLEAN] = sConfig.GetIntDefault("GridCleanUpDelay", 5 * MINUTE * IN_MILISECONDS);
     if (m_configs[CONFIG_INTERVAL_GRIDCLEAN] < MIN_GRID_DELAY)
@@ -1605,7 +1609,9 @@ void World::SetInitialWorldSettings()
 
     sLog.outString("Initializing Scripts...");
     sScriptMgr.ScriptsInit();
-
+    // Load AntiCheat-Config
+    sLog.outString("Loading AntiCheat config...");
+    objmgr.LoadAntiCheatConfig();
     ///- Initialize game time and timers
     sLog.outDebug("DEBUG:: Initialize game time and timers");
     m_gameTime = time(NULL);
