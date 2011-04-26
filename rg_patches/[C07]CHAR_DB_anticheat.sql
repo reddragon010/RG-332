@@ -47,12 +47,12 @@ REPLACE INTO `anticheat_config`
 -- Subchecks
 REPLACE INTO `anticheat_config` 
 (`checktype`, `description`, `check_period`, `alarmscount`, `disableoperation`, `messagenum`, `intparam1`, `intparam2`, `floatparam1`, `floatparam2`, `action1`, `actionparam1`, `action2`, `actionparam2`) VALUES
-(101, "Speed hack",              500, 3, 0, 11000,    10000, 0, 0.0012,    0, 2, 1, 6, 20000),
-(102, "Fly hack",                500, 3, 0, 11000,    20000, 0,   10.0,    0, 2, 1, 0, 0),
-(103, "Wall climb hack",         500, 3, 0, 11000,    10000, 0, 0.0015, 2.37, 2, 1, 0, 0),
-(104, "Waterwalking hack",      1000, 3, 0, 11000,    20000, 0,      0,    0, 2, 1, 0, 0),
-(105, "Teleport to plane hack",  500, 3, 0, 11000,        0, 0, 0.0001,  0.1, 2, 1, 0, 0),
-(106, "AirJump hack" ,           500, 3, 0, 11000,    30000, 0,   10.0, 25.0, 2, 1, 0, 0),
+(101, "Speed hack",             5000, 3, 0, 11000,    10000, 0, 0.0012,    0, 2, 1, 0, 0),
+(102, "Fly hack",               5000, 3, 0, 11000,    20000, 0,   10.0,    0, 2, 1, 0, 0),
+(103, "Wall climb hack",        5000, 3, 0, 11000,    10000, 0, 0.0015, 2.37, 2, 1, 0, 0),
+(104, "Waterwalking hack",      5000, 3, 0, 11000,    20000, 0,      0,    0, 2, 1, 0, 0),
+(105, "Teleport to plane hack", 5000, 3, 0, 11000,        0, 0, 0.0001,  0.1, 2, 1, 0, 0),
+(106, "AirJump hack" ,          5000, 3, 0, 11000,    30000, 0,   10.0, 25.0, 2, 1, 0, 0),
 (107, "Teleport hack" ,            0, 3, 0, 11000,        0, 0,   50.0,    0, 2, 1, 0, 0),
 (108, "Fall hack" ,                0, 3, 0, 11000,    10000, 0,      0,    0, 2, 1, 0, 0),
 (109, "Z Axis hack" ,              0, 1, 0, 11000,        0, 0,0.00001,0.0005, 2, 1, 0, 0),
