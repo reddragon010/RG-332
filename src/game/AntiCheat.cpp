@@ -310,7 +310,7 @@ void AntiCheat::DoAntiCheatAction(AntiCheatCheck checkType, std::string reason)
 				*/
 
                 case    ANTICHEAT_ACTION_ANNOUNCE_GM:
-                        sWorld.SendGMText(12000, namechat.c_str(), config->description.c_str());
+                        sWorld.SendGMText(LANG_ANTI_CHEAT_ENGINE, namechat.c_str(), config->description.c_str());
                 break;
 
 				/*
